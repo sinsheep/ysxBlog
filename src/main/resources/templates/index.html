@@ -56,7 +56,7 @@
                                 <div class="eleven wide column">
                                     <h3 class="ui header"><a href="#"  th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">一篇技术博客</a></h3>
                                     <p class="m-text-spaced" th:text="|${blog.description}.......|">
-                                    “中国科学院武汉病毒研究所已于今年3月23日发布了相关声明，声明表示2019年12月30日之前武汉病毒研究所未接触过新型冠状病毒。迄今为止，该所职工和研究生保持新型冠状病毒零感染。”在5月24日的中国外交部例行记者会上，发言人赵立坚在回应相关提问时说。
+                                    “中国科学院武汉病毒研究所已于今年3月23日发布了相关声明;
                                     </p>
                                     <div class="ui stackable grid">
                                         <div class="eleven wide column">
@@ -97,7 +97,7 @@
                                 <a href="#" th:href="@{/(page=${page.number}+1)}"  th:unless="${page.last}" class="ui teal basic button">下一页</a>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <!-- right -->
                 <div class="five wide column">

@@ -65,7 +65,6 @@
             <h2 class="ui header center aligned" th:text="${blog.title}">java学习日记</h2>
             <div id="content" class="js-toc-content typo typo-selection m-padded-lr-responsive"
                  th:utext="${blog.content}">
-
             </div>
 
 
@@ -129,22 +128,54 @@
                                 <img src="https://picsum.photos/100/100?image=1003" th:src="@{${comment.avatar}}">
                             </a>
                             <div class="content">
-                                <a class="author" th:text="${comment.nickname}">Matt</a>
+                                <a class="author" >
+                                   <span th:text="${comment.nickname}">Matt</span>
+                                    <div class="ui mini basic teal left pointing label" th:if="${comment.adminComment}">博主</div>
+                                </a>
                                 <div class="metadata">
-                                    <span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd hh:mm')}">今天下午 5:42</span>
+                                    <span class="date"
+                                          th:text="${#dates.format(comment.createTime,'yyyy-MM-dd hh:mm')}">今天下午 5:42</span>
                                 </div>
                                 <div class="text" th:text="${comment.content}">太赞了！</div>
                                 <div class="actions">
-                                    <a class="reply" data-commentid="1" data-commentnickname="Matt"  th:attr="data-commentnickname=${comment.nickname},data-commentid=${comment.id}"  onclick="reply(this)">Reply</a>
+                                    <a class="reply" data-commentid="1" data-commentnickname="Matt"
+                                       th:attr="data-commentnickname=${comment.nickname},data-commentid=${comment.id}"
+                                       onclick="reply(this)">Reply</a>
+                                </div>
+                            </div>
+                            <div class="comments" th:if="${#arrays.length(comment.replyComments)}">
+                                <div class="comment" th:each="reply: ${comment.replyComments}">
+                                    <a class="avatar">
+                                        <img src="https://picsum.photos/100/100?image=1003"
+                                             th:src="@{${reply.avatar}}">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author" >
+                                            <span th:text="${reply.nickname}">Matt</span>
+                                            <span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal"></span>
+                                            &nbsp;<div class="ui mini basic teal left pointing label" th:if="${reply.adminComment}">博主</div>
+                                        </a>
+                                        <div class="metadata">
+                                            <span class="date"
+                                                  th:text="${#dates.format(reply.createTime,'yyyy-MM-dd hh:mm')}">今天下午 5:42</span>
+                                        </div>
+                                        <div class="text" th:text="${reply.content}">太赞了！</div>
+                                        <div class="actions">
+                                            <a class="reply" data-commentid="1" data-commentnickname="Matt"
+                                               th:attr="data-commentnickname=${reply.nickname},data-commentid=${reply.id}"
+                                               onclick="reply(this)">Reply</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div id="comment-form" class="ui reply form stackable">
-                <input type="text" name="blog.id" th:value="${blog.id}">
-                <input type="text" name="parentComment.id" value="-1">
+                <input type="hidden" name="blog.id" th:value="${blog.id}">
+                <input type="hidden" name="parentComment.id" value="-1">
                 <div class="field">
                     <textarea name="content" placeholder="请输入评论信息"></textarea>
                 </div>
@@ -152,13 +183,13 @@
                     <div class="field m-mobile-wide m-margin-bottom-mini">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="nickname" id="nickname" placeholder="name">
+                            <input type="text" name="nickname" id="nickname" placeholder="name" th:value="${session.user}!=null?${session.user.nickname}">
                         </div>
                     </div>
                     <div class="field m-mobile-wide m-margin-bottom-mini">
                         <div class="ui left icon input">
                             <i class="mail icon"></i>
-                            <input type="text" name="email" id="email" placeholder="email">
+                            <input type="text" name="email" id="email" placeholder="email" th:value="${session.user}!=null?${session.user.email}">
                         </div>
                     </div>
                     <div class="field m-mobile-wide m-margin-bottom-mini">
@@ -265,6 +296,7 @@
         on: 'click',
         position: 'left center',
     });
+
     $('#passage-to-QR').popup({
         popup: $('.converse-wechat'),
         on: 'click',
@@ -280,6 +312,7 @@
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
     });
+
     $('#to-top-button').click(function () {
         $(window).scrollTo(0, 500);
     });
@@ -317,32 +350,35 @@
             console.log("校验失败")
         }
     });
-    $(function(){
+    $(function () {
         $("#comment-container").load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/8");
     });
+
     function postData() {
-        $("#comment-container").load(/*[[@{/comments}]]*/"",{
+        $("#comment-container").load(/*[[@{/comments}]]*/"", {
             "parentComment.id": $("[name='parentComment.id']").val(),
             "blog.id": $("[name='blog.id']").val(),
             "nickname": $("[name='nickname']").val(),
             "email": $("[name='email']").val(),
             "content": $("[name='content']").val(),
-        },function(responsetext,statusText,xhr){
-            $(window).scrollTo($("#comment-container"),500);
+        }, function (responsetext, statusText, xhr) {
+            // $(window).scrollTo($("#comment-container"), 500);
             clearContent();
         });
     }
+
     function clearContent() {
         $("[name='content']").val("");
         $("[name='parentComment.id']").val("-1");
-        $("[name='content']").attr("placeholder","").focus();
+        $("[name='content']").attr("placeholder", "").focus();
     }
-    function reply(obj){
+
+    function reply(obj) {
         let commentId = $(obj).data("commentid");
         let commentNickname = $(obj).data("commentnickname");
-        $("[name='content']").attr("placeholder","@"+commentNickname).focus();
+        $("[name='content']").attr("placeholder", "@" + commentNickname).focus();
         $("[name='parentComment.id']").val(commentId);
-        $(window).scrollTo($("#comment-form"),500)
+        $(window).scrollTo($("#comment-form"), 500)
     }
 </script>
 </body>

@@ -120,11 +120,14 @@ body {
 .m-black {
   color: #233;
 }
+.m-teal {
+  color : #00b5ad !important;
+}
 
 /* shadow */
 .m-shadow-small {
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0, 2) !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0, 2) !important;
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 2) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2) !important;
 }
 
 /* mobile show */
