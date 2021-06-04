@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql//localhost:3306/blog?useUnicode=true&charEncoding=utf-8
+    username: root
+    password: tbswlcgjdwgrcy
+
+
+logging:
+  level:
+    root: info
+    com.ysx: debug
+  file:
+    name: blog.log
+    path: log/
+
+server:
+  port: 8081
+
+

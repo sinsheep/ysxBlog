@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:replace="${title}">详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" th:href="@{/css/me.css}" href="../../static/css/me.css" />
+    <link rel="stylesheet" th:href="@{/css/typo.css}" href="../../static/css/typo.css">
+    <link rel="stylesheet" th:href="@{/lib/prismjs/prism.css}" href="../../static/lib/prismjs/prism.css">
+    <link rel="stylesheet" th:href="@{/css/animate.css}" href="../../static/css/animate.css">
+    <link rel="stylesheet" th:href="@{/lib/editormd/css/editormd.min.css}" href="../static/lib/editormd/css/editormd.min.css">
+</head>
+<body>
+
+</body>
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">后台管理</h2>
+                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home small icon"></i>博客</a>
+                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="idea small icon"></i>分类</a>
+                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="clone small icon"></i>tags</a>
+                <div class="right m-item m-mobile-hide menu">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img src="https://picsum.photos/100/100?image=1005" alt="" class="ui avatar image" th:src="${session.user.avatar}">
+                            <span th:text="${session.user.nickname}">ysx</span>
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui black  menu toggle button m-top-right m-mobile-show"><i class="sidebar icon"></i></a>
+</nav>
+
+<!--footer-->
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img  th:src="@{/img/wx.jpeg}" src="../../static/img/wx.jpeg" class="ui rounded image" style="width:110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事(User Stroy)</a>
+                    <a href="#" class="item">用户故事(User Stroy)</a>
+                    <a href="#" class="item">用户故事(User Stroy)</a>
+                </div>
+            </div><div class="three wide column">
+
+                <h4 class="ui inverted header">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email: 691765069@qq.com</a>
+                    <a href="#" class="item">QQ: 691765069</a>
+                </div>
+            </div>
+            <div class="seven wide column"><h4 class="ui inverted header">Blog</h4><p class="m-text-thin m-text-spaced m-opacity-mini">这是ysx的个人博客，会写一些我平时学习的笔记和经验，希望可以对你有帮助</p></div></div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright@2016-2020 Design by ysx</p>
+    </div>
+</footer>
+
+
+<!--script-->
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script th:src="@{/lib/editormd/editormd.min.js}" src="../static/lib/editormd/editormd.min.js"></script>
+</th:block>
+
+
+</html>

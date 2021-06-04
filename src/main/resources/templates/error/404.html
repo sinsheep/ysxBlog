@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments::head(~{::title})">
+    <meta charset="UTF-8">
+    <title>404</title>
+</head>
+<body>
+<nav th:replace="_fragments::menu(0)"></nav>
+
+<div class="m-padded-tb-massive m-padded-lr-responsive">
+    <div class="ui error message">
+        <div class="ui container">
+            <h2>404</h2>
+            <p>对不起,你的访问资源不存在</p>
+        </div>
+    </div>
+
+
+</div>
+
+<div th:replace="_fragments::footer"></div>
+</body>
+</html>

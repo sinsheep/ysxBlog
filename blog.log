@@ -1,0 +1,15 @@
+2021-05-28 15:29:08.126  INFO 9023 --- [restartedMain] com.ysx.BlogApplication                  : Starting BlogApplication using Java 15.0.1 on thexin with PID 9023 (/home/ysx/IdeaProjects/ysxBlog/blog/target/classes started by ysx in /home/ysx/IdeaProjects/ysxBlog/blog)
+2021-05-28 15:29:08.128 DEBUG 9023 --- [restartedMain] com.ysx.BlogApplication                  : Running with Spring Boot v2.4.6, Spring v5.3.7
+2021-05-28 15:29:08.152  INFO 9023 --- [restartedMain] com.ysx.BlogApplication                  : No active profile set, falling back to default profiles: default
+2021-05-28 15:29:08.237  INFO 9023 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-05-28 15:29:08.239  INFO 9023 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-05-28 15:29:08.876  WARN 9023 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.ysx]' package. Please check your configuration.
+2021-05-28 15:29:09.254  INFO 9023 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-28 15:29:09.262  INFO 9023 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-28 15:29:09.262  INFO 9023 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2021-05-28 15:29:09.306  INFO 9023 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-28 15:29:09.306  INFO 9023 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1066 ms
+2021-05-28 15:29:09.606  WARN 9023 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-05-28 15:29:09.786  INFO 9023 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-28 15:29:09.823  INFO 9023 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-28 15:29:09.834  INFO 9023 --- [restartedMain] com.ysx.BlogApplication                  : Started BlogApplication in 2.477 seconds (JVM running for 3.962)
