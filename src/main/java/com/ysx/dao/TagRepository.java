@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface TagRepository extends JpaRepository<Tag,Long> {
 
+    List<Tag> findAllByNameIn(List<String> names);
     Tag findByName(String name);
 
     @Query("select t from Tag t")

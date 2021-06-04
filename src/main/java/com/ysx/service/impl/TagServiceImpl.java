@@ -20,6 +20,7 @@ public class TagServiceImpl implements TagService {
 
     @Autowired
     private TagRepository tagRepository;
+
     @Override
     public Tag saveTag(Tag tag) {
         return tagRepository.save(tag);
@@ -42,32 +43,29 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public List<Tag> listTag(String ids) {
-        return tagRepository.findAllById(convertToList(ids));
+        return tagRepository.findAllByNameIn(convertToList(ids));
     }
 
     @Override
     public List<Tag> listTagTop(Integer size) {
-        Sort sort = Sort.by(Sort.Direction.DESC,"blogs.size");
-        Pageable pageable = PageRequest.of(0,size,sort);
+        Sort sort = Sort.by(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = PageRequest.of(0, size, sort);
         return tagRepository.findTop(pageable);
     }
 
     // TODO: 6/2/21 convert TagIds to List: "1,2,3" to [1,2,3]
 
-    private List<Long> convertToList(String ids) {
-        List<Long> list = new ArrayList<>();
-        if(!"".equals(ids) && ids!=null){
-
-            String[] idArray =ids.split(",");
-            for (int i = 0; i < idArray.length; i ++) {
-                Long lId = Long.valueOf(idArray[i]);
-                if(tagRepository.getOne(lId)==null){
-                    if(tagRepository.findByName(idArray[i])!=null){
-
-                    }
-                }else {
-                    list.add(Long.valueOf(idArray[i]));
+    private List<String> convertToList(String ids) {
+        List<String> list = new ArrayList<>();
+        if (!"".equals(ids) && ids != null) {
+            String[] idArray = ids.split(",");
+            for (int i = 0; i < idArray.length; i++) {
+                if (tagRepository.findByName(idArray[i]) == null) {
+                    Tag t = new Tag();
+                    t.setName(idArray[i]);
+                    tagRepository.save(t);
                 }
+                list.add(idArray[i]);
             }
         }
         return list;
@@ -81,14 +79,14 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag updateTag(Long id, Tag tag) {
         Tag t = tagRepository.getOne(id);
-        if(t==null){
+        if (t == null) {
             try {
-                throw  new NotFoundException("tags don't exist");
+                throw new NotFoundException("tags don't exist");
             } catch (NotFoundException e) {
                 e.printStackTrace();
             }
         }
-        BeanUtils.copyProperties(tag,t);
+        BeanUtils.copyProperties(tag, t);
         return tagRepository.save(t);
 
     }
