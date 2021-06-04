@@ -8,7 +8,6 @@ class BlogApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(Long.valueOf("klajfskldjf"));
         System.out.println(Long.valueOf("123fskldjf"));
     }
 

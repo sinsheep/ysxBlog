@@ -3,3 +3,6 @@ spring:
     cache: false
   profiles:
     active: dev
+
+
+comment.avatar: /img/avatar.jpg

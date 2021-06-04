@@ -4,6 +4,7 @@ import com.ysx.dao.BlogRepository;
 import com.ysx.po.Blog;
 import com.ysx.po.Type;
 import com.ysx.service.BlogService;
+import com.ysx.util.MarkdownUtils;
 import com.ysx.vo.BlogQuery;
 import javassist.NotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -32,7 +33,25 @@ public class BlogServiceImpl implements BlogService {
     private BlogRepository blogRepository;
     @Override
     public Blog getBlog(Long id) {
+
         return blogRepository.getOne(id);
+    }
+
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.getOne(id);
+        if(blog == null) {
+            try {
+                throw new NotFoundException("博客不存在");
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Override

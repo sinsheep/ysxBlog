@@ -1,6 +1,7 @@
 package com.ysx.web;
 
 import com.ysx.service.BlogService;
+import com.ysx.service.CommentService;
 import com.ysx.service.TagService;
 import com.ysx.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class IndexController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping("/")
     public String index(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, Model model) {
 
@@ -35,8 +39,10 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/blog")
-    public String blog() {
+    @GetMapping("/blog/{id}")
+    public String blog(@PathVariable Long id,Model model) {
+        model.addAttribute("blog",blogService.getAndConvert(id));
+//        model.addAttribute("comments",commentService.listCommentByBlogId(id));
         return "blog";
     }
 
