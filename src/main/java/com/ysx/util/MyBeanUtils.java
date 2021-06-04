@@ -1,4 +1,4 @@
-package util;
+package com.ysx.util;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -14,9 +14,9 @@ public class MyBeanUtils {
         BeanWrapper beanWrapper = new BeanWrapperImpl(source);
         PropertyDescriptor[] pds = beanWrapper.getPropertyDescriptors();
         List<String> nullPropertyNames = new ArrayList<>();
-        for(PropertyDescriptor pd: pds){
+        for (PropertyDescriptor pd : pds) {
             String propertyName = pd.getName();
-            if (beanWrapper.getPropertyValue(propertyName) == null){
+            if (beanWrapper.getPropertyValue(propertyName) == null) {
                 nullPropertyNames.add(propertyName);
             }
         }
