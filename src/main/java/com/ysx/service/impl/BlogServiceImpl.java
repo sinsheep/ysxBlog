@@ -105,6 +105,7 @@ public class BlogServiceImpl implements BlogService {
         List<String> years= blogRepository.findGroupYear();
         Map<String,List<Blog>> map = new HashMap<>();
         for(String year: years){
+            System.out.println(blogRepository.findByYear(year));
             map.put(year,blogRepository.findByYear(year));
         }
         return map;
@@ -140,6 +141,7 @@ public class BlogServiceImpl implements BlogService {
                 e.printStackTrace();
             }
         }
+        System.out.println(blog+"-----");
         BeanUtils.copyProperties(blog,b, MyBeanUtils.getNullPropertyNames(blog));
         b.setUpdateTime(new Date());
         return blogRepository.save(b);

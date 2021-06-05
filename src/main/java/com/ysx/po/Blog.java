@@ -19,11 +19,11 @@ public class Blog {
     private String firstPicture;
     private String flag;
     private Integer views;
-    private Boolean appreciation;
-    private Boolean shareStatement;
-    private Boolean commentable;
-    private Boolean published;
-    private Boolean recommend;
+    private boolean appreciation;
+    private boolean shareStatement;
+    private boolean commentable;
+    private boolean published;
+    private boolean recommend;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
@@ -105,7 +105,7 @@ public class Blog {
         this.views = views;
     }
 
-    public Boolean getAppreciation() {
+    public boolean getAppreciation() {
         return appreciation;
     }
 
@@ -113,7 +113,7 @@ public class Blog {
         this.appreciation = appreciation;
     }
 
-    public Boolean getShareStatement() {
+    public boolean getShareStatement() {
         return shareStatement;
     }
 
@@ -121,7 +121,7 @@ public class Blog {
         this.shareStatement = shareStatement;
     }
 
-    public Boolean getCommentable() {
+    public boolean getCommentable() {
         return commentable;
     }
 
@@ -129,7 +129,7 @@ public class Blog {
         this.commentable = commentable;
     }
 
-    public Boolean getPublished() {
+    public boolean getPublished() {
         return published;
     }
 
@@ -137,7 +137,7 @@ public class Blog {
         this.published = published;
     }
 
-    public Boolean getRecommend() {
+    public boolean getRecommend() {
         return recommend;
     }
 

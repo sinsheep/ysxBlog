@@ -58,11 +58,7 @@
                         <div class="ui orange basic left pointing label">运动</div>
                     </div>
                     <div class="ui attached segment">
-                        <div class="ui teal basic left pointing label large m-margin-tb-tiny">java</div>
-                        <div class="ui teal basic left pointing label large m-margin-tb-tiny">javascript</div>
-                        <div class="ui teal basic left pointing label large m-margin-tb-tiny">c++</div>
-                        <div class="ui teal basic left pointing label large m-margin-tb-tiny">python</div>
-                        <div class="ui teal basic left pointing label large m-margin-tb-tiny">c</div>
+                        <a th:href="@{tags/{id}(id=${tag.id})}" class="ui teal basic left pointing label large m-margin-tb-tiny" th:text="${tag.name}" th:each="tag:${tags}">java</a>
                     </div>
                     <div class="ui bottom attached segment">
                         <a href="https://github.com/sinsheep" target="_blank" class="ui circular icon button"><i class="github icon"></i></a>
@@ -113,8 +109,11 @@
         </div>
     </footer>
 
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+
     <script>
         $('.menu.toggle').click(function() {
             $('.m-item').toggleClass('m-mobile-hide');

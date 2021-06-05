@@ -70,34 +70,36 @@
 
             <!-- 标签 -->
             <div class="m-padded-lr">
-                <div class="ui basic teal left pointing label" th:each="tag:${blog.tags}" th:text="${tag.name}">方法论
-                </div>
+                <a class="ui basic teal left pointing label" th:href="@{/tags/{id}(id=${tag.id})}" th:each="tag:${blog.tags}" th:text="${tag.name}">方法论
+                </a>
             </div>
             <!-- 赞赏 -->
 
-            <div class="ui center aligned basic segment">
-                <button id="sponsor" class="ui orange basic circular button">赞赏</button>
-            </div>
-            <div class="ui payQR flowing popup transition hidden">
-                <div class="ui orange basic label">
-                    <ui class="ui images" style="font-size: inherit !important;">
-                        <div class="image">
-                            <img th:src="@{/img/wx.jpeg}" src="../static/img/wx.jpeg" alt=""
-                                 class="ui rounded bordered image" style="width:120px">
-                            <div>支付宝</div>
-                        </div>
-                        <div class="image">
-                            <img th:src="@{/img/wx.jpeg}" src="../static/img/wx.jpeg" alt=""
-                                 class="ui rounded bordered image" style="width:120px">
+            <div th:if="${blog.appreciation}">
+                <div class="ui center aligned basic segment">
+                    <button id="sponsor" class="ui orange basic circular button">赞赏</button>
+                </div>
+                <div class="ui payQR flowing popup transition hidden">
+                    <div class="ui orange basic label">
+                        <ui class="ui images" style="font-size: inherit !important;">
+                            <div class="image">
+                                <img th:src="@{/img/wx.jpeg}" src="../static/img/wx.jpeg" alt=""
+                                     class="ui rounded bordered image" style="width:120px">
+                                <div>支付宝</div>
+                            </div>
+                            <div class="image">
+                                <img th:src="@{/img/wx.jpeg}" src="../static/img/wx.jpeg" alt=""
+                                     class="ui rounded bordered image" style="width:120px">
 
-                            <div>微信</div>
-                        </div>
-                    </ui>
+                                <div>微信</div>
+                            </div>
+                        </ui>
+                    </div>
                 </div>
             </div>
 
         </div>
-        <div class="ui attached positive message">
+        <div class="ui attached positive message" th:if="${blog.shareStatement}">
             <!-- 博客信息 -->
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
@@ -117,7 +119,7 @@
             </div>
         </div>
 
-        <div class="ui bottom attached segment">
+        <div class="ui bottom attached segment" th:if="${blog.commentable}">
             <!-- 留言区域 -->
             <div id="comment-container" class="ui segment teal">
                 <div th:fragment="commentList">
@@ -302,7 +304,7 @@
         on: 'click',
         position: 'left center'
     });
-    let serverUrl = "http://127.0.0.1:8080"
+    let serverUrl = /*[[#{blog.serverurl}]]*/"http://127.0.0.1:8080"
     let url = /*[[@{/blog/{id}(id=${blog.id})}]]*/"";
     let qrcode = new QRCode("qrcode", {
         text: serverUrl + url,

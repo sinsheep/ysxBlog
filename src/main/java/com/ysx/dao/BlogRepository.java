@@ -27,6 +27,6 @@ public interface BlogRepository extends JpaRepository<Blog,Long>, JpaSpecificati
     @Query("select function('date_format',b.updateTime,'%Y') as year from Blog b group by function('date_format',b.updateTime,'%Y') order by function('date_format',b.updateTime,'%Y') desc " )
     List<String> findGroupYear();
 
-    @Query("select b from Blog b where function('data_format',b.updateTime,'%y') = ?1")
+    @Query("select b from Blog b where function('date_format',b.updateTime,'%Y')=?1")
     List<Blog> findByYear(String year);
 }

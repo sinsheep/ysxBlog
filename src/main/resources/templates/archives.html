@@ -50,8 +50,8 @@
 
         <th:block th:each="item:${archiveMap}">
             <h2 class="ui center aligned header" th:text="${item.key}">2018</h2>
-            <div class="ui fluid vertical menu">
-                <a href="#" th:href="${/blog/{id}(id=${blog.id})}" class="item" th:each="blog:${item.value}">
+            <div class="ui fluid vertical menu" th:each="blog:${item.value}">
+                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item">
                         <span>
                             <i class="small teal circle icon"></i><span th:text="${blog.title}">java学习笔记</span>
                             <div class="ui teal basic left pointing label m-padded-mini" th:text="${#dates.format(blog.updateTime,'MMdd')}">9月13</div>

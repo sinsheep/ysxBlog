@@ -55,4 +55,10 @@ public class IndexController {
         model.addAttribute("query",query);
         return "search";
     }
+
+    @GetMapping("/footer/newBlog")
+    public String newBlogs(Model model){
+        model.addAttribute("newBlogs",blogService.listRecommendBlogTop(3));
+        return "_fragments::newBlogList";
+    }
 }
